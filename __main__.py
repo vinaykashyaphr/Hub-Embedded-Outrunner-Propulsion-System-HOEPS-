@@ -15,8 +15,10 @@ Reference: Vinay Kashyap H R et al., KSCST Ref: 44S_BE_2684, 2020-21.
 from motor.materials import SMCO28, JNEX900
 from motor.sizing import MotorSpec, MotorSizer
 from motor.performance import MotorPerformanceEstimator
+from propeller import geometry
 from propeller.bem import PropellerSpec, BEMDesigner
 from propeller.geometry import plot_all
+from propeller.export import export_blade_to_dxf, export_blade_to_pdf
 from cfd.comparison import compare_configurations
 
 
@@ -77,6 +79,10 @@ def main():
     blade = designer.design()
     print()
     blade.print_geometry_table()
+    print("Exporting blade geometry to DXF: plots/mpse_propeller_blade.dxf")
+    export_blade_to_dxf(blade, "plots/mpse_propeller_blade.dxf")
+    print("Exporting blade geometry to PDF: plots/mpse_propeller_blade.pdf")
+    export_blade_to_pdf(blade, "plots/mpse_propeller_blade.pdf")
 
     # --- Step 2b: Blade geometry plots ---
     print("\n[ 2b ] GENERATING BLADE GEOMETRY PLOTS")
